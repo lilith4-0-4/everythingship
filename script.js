@@ -18,7 +18,7 @@ const coupons = {
 };
 
 // day 9
-const toggleImages = ["images/coupon9.png", "images/coupon9alt.png"];
+const toggleImages = ["coupon9.png", "coupon9alt.png"];
 let isToggled = false; // tracking
 
 // card clicked handler
