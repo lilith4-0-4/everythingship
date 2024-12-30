@@ -1,105 +1,56 @@
-    document.querySelectorAll('.gift').forEach(gift => {
-        gift.addEventListener('click', () => {
-        const message = document.createElement('div');
-        message.classList.add('surprise');
-        if (gift.id === 'gift1') {
-            message.textContent = 'did you know you’re really cute';
-        } else if (gift.id === 'gift2') {
-            message.textContent = 'and i really wanna kiss you';
-        } else if (gift.id === 'gift3') {
-            message.textContent = 'and you’re the best present i could ever ask for';
+const cards = document.querySelectorAll('.card');
+const popup = document.getElementById('popup');
+const couponImage = document.getElementById('coupon-image');
+const popupText = document.getElementById('popup-text'); // Text placeholder
+const closeBtn = document.getElementById('close-btn');
+
+// pics and text
+const coupons = {
+    1: { image: "images/coupon1.png", text: "so you can know what it feels like to not be skellie for once" },
+    2: { image: "images/coupon2.webp", text: "reminder: you are my home" },
+    3: { image: "images/rickroll.gif", text: "they can't all be winners" },
+    4: { image: "images/coupon4.webp", text: "maybe you can finally show me all them songs" },
+    5: { image: "images/coupon5.webp", text: "if i laaaay heeereeeeee" },
+    6: { image: "images/coupon6.webp", text: "make the most of it crispy roll" },
+    7: { image: "images/coupon7.jpg", text: "almost as spicy as you" },
+    8: { image: "images/coupon8.webp", text: "any pic of your liking (or multiple winky face)" },
+    9: { image: "images/coupon9.png", text: "happy cake day to my lil redditor (hint: i wonder what would happen if this photo could be flipped)" }
+};
+
+// day 9
+const toggleImages = ["images/coupon9.png", "images/coupon9alt.png"];
+let isToggled = false; // tracking
+
+// card clicked handler
+cards.forEach(card => {
+    card.addEventListener('click', () => {
+        const day = parseInt(card.dataset.day);  
+        // corresponding pic and text
+        card.classList.add('opened');
+        popupText.textContent = coupons[day].text;
+        couponImage.src = coupons[day].image;
+        popup.classList.remove('hidden');
+        // day 9
+        if (day === 9) {
+            isToggled = false; // reset toggle state
+            couponImage.addEventListener('click', toggleNinthImage);
+        } else {
+            couponImage.removeEventListener('click', toggleNinthImage);
         }
-        gift.replaceWith(message);
-        message.style.opacity = '0';
-        setTimeout(() => {
-            message.style.opacity = '1';
-        }, 100);
-        });
     });
+});
+function toggleNinthImage() {
+    isToggled = !isToggled;
+    couponImage.src = isToggled ? toggleImages[1] : toggleImages[0];
+}
 
-    const snowflakes = document.getElementById('snowflakes');
+// close handler
+closeBtn.addEventListener('click', () => {
+    popup.classList.add('hidden');
+});
 
-    // snowflakes
-    function generateSnowflakes() {
-    for (let i = 0; i < 100; i++) {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.style.left = Math.random() * 100 + 'vw';
-        snowflake.style.animationDelay = Math.random() * 5 + 's';
-        snowflake.style.animationDuration = 3 + Math.random() * 2 + 's';
-        snowflakes.appendChild(snowflake);
-    }
-
-    setTimeout(() => {
-        snowflakes.style.opacity = '0';
-        setTimeout(() => {
-            snowflakes.innerHTML = '';
-        }, 5000);
-    }, 10000);
-    }
-
-    generateSnowflakes();
-
-
-    // letter
-    const letter = `
-            
-To my cutest crispy roll,
-
-I wish you the merriest Christmas ever. Two and a half years of knowing you feel like two and a half minutes, but at the same time it feels like I’ve known you my whole life. I’ll always admire the deep emotional bond we share, I could talk to you for hours and never get tired. You’ve never failed to put a smile on my face during all this time and for that, I’m eternally grateful.
-
-There is truly no one else as kind, caring, understanding and funny as you and those are just a few of the many good adjectives I could use to describe you. You’re genuinely perfect and I am so proud of you and the man you’ve become.
-
-Here’s to many more (white) Christmases together and hours spent cuddling underneath blankets by a fireplace.
-
-Sending endless kisses and cuddles forever, 
-Your magic star
-
-        `;
-
-    const letterElement = document.getElementById('letter');
-    let index = 0;
-
-    function typeLetter() {
-    if (index < letter.length) {
-        letterElement.textContent += letter.charAt(index);
-        index++;
-        setTimeout(typeLetter, 80);
-    }
-    }
-
-        typeLetter();
-
-/* COUNTDOWN */
-    document.addEventListener("DOMContentLoaded", () => {
-    const countdownContainer = document.getElementById("countdown-container");
-    const mainContent = document.getElementById("wholebody");
-    const targetDate = new Date("December 25, 2024 00:00:00").getTime();
-  
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const timeLeft = targetDate - now;
-  
-      if (timeLeft <= 0) {
-        countdownContainer.style.display = "none";
-        mainContent.style.display = "block";
-        clearInterval(timer);
-        return;
-      }
-  
-      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-  
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
-      document.getElementById("minutes").textContent = minutes;
-      document.getElementById("seconds").textContent = seconds;
-    };
-  
-    const timer = setInterval(updateCountdown, 1000);
-
-    updateCountdown();
-  });
-  
+// rules
+const rule = document.getElementById('rules');
+rule.onclick = function() {
+    rule.innerHTML = "2. Enjoy it just as much as I enjoyed making it";
+};
