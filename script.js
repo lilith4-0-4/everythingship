@@ -6,15 +6,15 @@ const closeBtn = document.getElementById('close-btn');
 
 // pics and text
 const coupons = {
-    1: { image: "images/coupon1.png", text: "so you can know what it feels like to not be skellie for once" },
-    2: { image: "images/coupon2.webp", text: "reminder: you are my home" },
-    3: { image: "images/rickroll.gif", text: "they can't all be winners" },
-    4: { image: "images/coupon4.webp", text: "maybe you can finally show me all them songs" },
-    5: { image: "images/coupon5.webp", text: "if i laaaay heeereeeeee" },
-    6: { image: "images/coupon6.webp", text: "make the most of it crispy roll" },
-    7: { image: "images/coupon7.jpg", text: "almost as spicy as you" },
-    8: { image: "images/coupon8.webp", text: "any pic of your liking (or multiple winky face)" },
-    9: { image: "images/coupon9.png", text: "happy cake day to my lil redditor (hint: i wonder what would happen if this photo could be flipped)" }
+    1: { image: "coupon1.png", text: "so you can know what it feels like to not be skellie for once" },
+    2: { image: "coupon2.webp", text: "reminder: you are my home" },
+    3: { image: "rickroll.gif", text: "they can't all be winners" },
+    4: { image: "coupon4.webp", text: "maybe you can finally show me all them songs" },
+    5: { image: "coupon5.webp", text: "if i laaaay heeereeeeee" },
+    6: { image: "coupon6.webp", text: "make the most of it crispy roll" },
+    7: { image: "coupon7.jpg", text: "almost as spicy as you" },
+    8: { image: "coupon8.webp", text: "any pic of your liking (or multiple winky face)" },
+    9: { image: "coupon9.png", text: "happy cake day to my lil redditor (hint: i wonder what would happen if this photo could be flipped)" }
 };
 
 // day 9
